@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Room - Secure Web Chat</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <div class="chat-container">
+      <div class="chat-header">
+        <div class="chat-header-main">
+          <div class="chat-title">
+            <i class="fas fa-lock"></i>
+            <h2>Private Chat</h2>
+          </div>
+          <div class="partner-status">
+            <span id="waiting-badge" class="status-badge warning">
+              <i class="fas fa-user"></i>
+              Waiting for partner
+            </span>
+            <span id="connected-badge" class="status-badge success hidden">
+              <i class="fas fa-user-check"></i>
+              <span id="partner-name">Partner</span> connected
+            </span>
+          </div>
+          <div class="header-actions">
+            <button id="share-btn" class="button small outline">
+              <i class="fas fa-copy"></i>
+              <span>Share Link</span>
+            </button>
+            <button id="end-chat-btn" class="button small danger ghost">
+              <i class="fas fa-sign-out-alt"></i>
+              <span class="hide-mobile">End Chat</span>
+            </button>
+          </div>
+        </div>
+        <div class="chat-header-status">
+          <div class="connection-status">
+            <span id="connection-indicator" class="status-dot connected"></span>
+            <span id="connection-text" class="status-text">
+              <i class="fas fa-wifi"></i>
+              Connected
+            </span>
+            <button id="reconnect-btn" class="button tiny ghost hidden">
+              <i class="fas fa-sync-alt"></i>
+              Reconnect
+            </button>
+          </div>
+          <div id="time-remaining" class="time-remaining hidden">
+            <i class="fas fa-clock"></i>
+            <span>Auto-deletes after <span id="time-value">24h 0m</span> of inactivity</span>
+          </div>
+        </div>
+      </div>
+      <div class="chat-messages" id="chat-messages">
+        <div id="empty-state" class="empty-state">
+          <i class="fas fa-comment-alt"></i>
+          <p>No messages yet</p>
+          <p class="hint">Send a message to start the conversation</p>
+          <div class="privacy-notice">
+            <p class="notice-title">Privacy Notice</p>
+            <p>Messages are end-to-end encrypted and stored only in your browser. They will be automatically deleted after 24 hours of inactivity.</p>
+          </div>
+        </div>
+        <div id="messages-container" class="messages-container hidden">
+          <div class="encryption-notice">
+            Messages are end-to-end encrypted and will be deleted after 24 hours of inactivity
+          </div>
+          <!-- Messages will be inserted here by JavaScript -->
+        </div>
+      </div>
+      <div class="chat-input">
+        <form id="message-form">
+          <input type="text" id="message-input" placeholder="Type your message..." class="input">
+          <button type="submit" id="send-btn" class="button primary icon-only">
+            <i class="fas fa-paper-plane"></i>
+            <span class="sr-only">Send</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Chat Dialog -->
+  <div id="end-chat-dialog" class="dialog-overlay hidden">
+    <div class="dialog">
+      <div class="dialog-header">
+        <h3>End Chat Session</h3>
+        <button id="close-dialog-btn" class="icon-button">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="dialog-content">
+        <p>Are you sure you want to end this chat? All messages will be permanently deleted and cannot be recovered.</p>
+        <div class="warning-box">
+          <p>This action cannot be undone. All messages will be permanently deleted.</p>
+        </div>
+      </div>
+      <div class="dialog-footer">
+        <button id="cancel-end-chat-btn" class="button outline">Cancel</button>
+        <button id="confirm-end-chat-btn" class="button danger">
+          <i class="fas fa-trash"></i>
+          End Chat & Delete Messages
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error Dialog -->
+  <div id="error-dialog" class="dialog-overlay hidden">
+    <div class="dialog">
+      <div class="dialog-header">
+        <h3>Chat Error</h3>
+      </div>
+      <div class="dialog-content">
+        <div class="error-box">
+          <i class="fas fa-exclamation-circle"></i>
+          <p id="error-message-text"></p>
+        </div>
+        <p class="hint">Please try refreshing the page or starting a new chat.</p>
+      </div>
+      <div class="dialog-footer">
+        <button id="refresh-btn" class="button primary">
+          <i class="fas fa-sync-alt"></i>
+          Refresh
+        </button>
+        <a href="index.html" class="button outline">
+          <i class="fas fa-arrow-left"></i>
+          New Chat
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="chat-room.js"></script>
+</body>
+</html>

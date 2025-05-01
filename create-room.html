@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Chat Room - Secure Web Chat</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card create-room-card">
+      <div class="card-header">
+        <div class="logo">
+          <div class="logo-icon">
+            <i class="fas fa-lock"></i>
+          </div>
+        </div>
+        <h2>Create a Private Chat</h2>
+        <p class="card-description" id="card-description">
+          Enter your name and create a secure chat room to share with one person.
+        </p>
+      </div>
+      <div class="card-content">
+        <!-- Create Room Form -->
+        <div id="create-form" class="form-container">
+          <div class="form-group">
+            <label for="username">Your Name</label>
+            <input type="text" id="username" placeholder="Enter your name" class="input">
+          </div>
+
+          <div class="feature-item">
+            <i class="fas fa-lock"></i>
+            <div>
+              <p class="feature-title">End-to-End Encrypted</p>
+              <p class="feature-description">Messages are encrypted in your browser</p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <i class="fas fa-shield-alt"></i>
+            <div>
+              <p class="feature-title">Private Connection</p>
+              <p class="feature-description">Only someone with the secret code can join</p>
+            </div>
+          </div>
+
+          <div id="error-message" class="error-message hidden"></div>
+        </div>
+
+        <!-- Room Created Success -->
+        <div id="room-created" class="form-container hidden">
+          <div class="link-container">
+            <p class="link-label">Secret Link (Share with one person)</p>
+            <div class="link-box">
+              <p id="secret-link" class="secret-link"></p>
+              <button id="copy-btn" class="icon-button">
+                <i class="fas fa-copy"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="warning-box">
+            <p><strong>Important:</strong> Share this secret link with only one person. Anyone with this link can access your chat.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <!-- Create Room Button -->
+        <button id="create-btn" class="button primary full-width">
+          <span id="create-btn-text">Create Private Chat Room</span>
+          <span id="create-btn-loading" class="hidden">
+            <i class="fas fa-spinner fa-spin"></i>
+            Creating Secure Room...
+          </span>
+        </button>
+
+        <!-- Room Created Buttons -->
+        <div id="room-buttons" class="button-group hidden">
+          <button id="join-btn" class="button primary full-width">Join Chat Room</button>
+          <button id="copy-link-btn" class="button outline full-width">Copy Secret Link</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="create-room.js"></script>
+</body>
+</html>
